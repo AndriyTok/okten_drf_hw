@@ -13,6 +13,7 @@ class ComputerSerializer(serializers.Serializer):
         ]
     )
     avail_status = serializers.BooleanField()
+    cpu = serializers.CharField(max_length=15)
     ram = serializers.IntegerField(
         validators=[MinValueValidator(4)]
     )
