@@ -49,4 +49,4 @@ class ComputerRetrieveUpdateDestroyView(APIView):
         pk = kwargs['pk']
         computer = self.get_computer(pk)
         computer.delete()
-        return Response(f"Computer {pk} deleted", status.HTTP_200_OK)
+        return Response(f"Computer {pk} deleted", status.HTTP_204_NO_CONTENT)
