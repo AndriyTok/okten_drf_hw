@@ -2,7 +2,9 @@
 # та JSON-представленням API, а також виконує валідацію вхідних даних.
 
 from rest_framework import serializers
+
 from apps.computers.models import ComputerModel
+
 
 class ComputerSerializer(serializers.ModelSerializer):
     # ModelSerializer автоматично створює поля serializer на основі полів моделі
@@ -17,5 +19,5 @@ class ComputerSerializer(serializers.ModelSerializer):
             'year',
             'avail_status',
             'cpu',
-            'ram'
+            'ram',
         )

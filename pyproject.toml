@@ -1,0 +1,38 @@
+# Poetry — інструмент для керування залежностями та віртуальним середовищем
+# Python-проєкту. Він дозволяє централізовано зберігати список залежностей,
+# їх версії та керувати встановленням пакетів.
+# Основні переваги — автоматичне створення/керування virtual environment,
+# контроль версій пакетів та відтворюваність середовища проєкту.
+
+[project]
+name = "okten-drf-hw"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "andriytok",email = "andriy.tokovyy@gmail.com"}
+]
+requires-python = "^3.14"
+
+# Основні залежності проєкту, необхідні для його роботи.
+dependencies = [
+    "asgiref (>=3.12.1,<4.0.0)",
+    "django (>=6.1.1,<7.0.0)",
+    "django-stubs (>=6.1.0,<7.0.0)",
+    "django-stubs-ext (>=6.1.0,<7.0.0)",
+    "djangorestframework (>=3.18.1,<4.0.0)",
+    "djangorestframework-stubs (>=3.18.1,<4.0.0)",
+    "mysqlclient (>=2.2.8,<3.0.0)",
+    "sqlparse (>=0.6.0,<0.7.0)",
+    "types-pyyaml (>=6.0.12.20260906,<7.0.0.0)",
+    "typing-extensions (>=4.16.0,<5.0.0)",
+    "django-dotenv (>=1.4.2,<2.0.0)",
+    "isort (>=9.0.1,<10.0.0)",
+]
+
+# Залежності, необхідні тільки під час розробки проєкту.
+[tool.poetry.group.dev.dependencies]
+isort = "^9.0.1" # isort автоматично сортує та організовує імпорти Python-коду.
+
+[build-system] # Налаштування системи збірки Python-пакета.
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
