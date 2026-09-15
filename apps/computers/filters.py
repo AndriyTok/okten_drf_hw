@@ -1,8 +1,10 @@
-from django.db.models import QuerySet # -> повертає Django ORM (Object Reference Model)
-from django.http import QueryDict # -> використовується для зберігання параметрів HTTP-запиту
+from django.db.models import QuerySet  # -> повертає Django ORM (Object Reference Model)
+from django.http import QueryDict  # -> використовується для зберігання параметрів HTTP-запиту
+
 from rest_framework.exceptions import ValidationError
 
 from apps.computers.models import ComputerModel
+
 
 # приймаємо параметри http-запиту та повертаємо queryset
 def filter_computer(query: QueryDict) -> QuerySet:

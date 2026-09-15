@@ -1,4 +1,5 @@
 from django.urls import path
+
 from .views import *
 
 # список url-маршрутів застосунку computers. підключаємо до основного списку ендпоінтів проекту через iclude()

@@ -1,8 +1,4 @@
-from tkinter.constants import CASCADE
-
 from django.core.validators import MaxValueValidator, MinValueValidator
-# для задання мін/макс значення певного
-# поля сутності
 from django.db import models
 from django.db.models import CASCADE
 
