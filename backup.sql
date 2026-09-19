@@ -224,15 +224,16 @@ CREATE TABLE `computers` (
   `PRICE` int DEFAULT NULL,
   `year` int NOT NULL,
   `avail_status` tinyint(1) NOT NULL,
-  `cpu` varchar(15) NOT NULL,
-  `ram` int NOT NULL,
+  `cpu` varchar(20) NOT NULL,
   `created_at` datetime(6) NOT NULL,
   `updated_at` datetime(6) NOT NULL,
   `computer_shop_id` bigint NOT NULL,
+  `ram_type` varchar(4) NOT NULL,
+  `ram` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `computers_computer_shop_id_7d19cf9d_fk_computer_shops_id` (`computer_shop_id`),
   CONSTRAINT `computers_computer_shop_id_7d19cf9d_fk_computer_shops_id` FOREIGN KEY (`computer_shop_id`) REFERENCES `computer_shops` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -241,7 +242,7 @@ CREATE TABLE `computers` (
 
 LOCK TABLES `computers` WRITE;
 /*!40000 ALTER TABLE `computers` DISABLE KEYS */;
-INSERT INTO `computers` VALUES (1,'Apple','MacBook Pro',80000,2022,1,'',24,'2026-09-10 20:32:07.756139','2026-09-10 20:32:07.776412',1),(2,'Acer','Predator Helios',65000,2021,0,'',8,'2026-09-10 20:32:07.756139','2026-09-10 20:32:07.776412',1),(3,'Asus','TUF Gaming',35000,2025,1,'',32,'2026-09-10 20:32:07.756139','2026-09-10 20:32:07.776412',1),(5,'LG','Gram',50000,2022,0,'Intel Core I7',16,'2026-09-10 21:09:51.832709','2026-09-10 21:09:51.832862',1),(6,'Asus','Rog Zephyrus',60000,2023,1,'Amd Ryzen 7',32,'2026-09-14 14:38:35.600323','2026-09-14 14:38:35.600404',3),(7,'Apple','MacBook Air',40000,2022,0,'Apple M2',8,'2026-09-14 14:39:02.688880','2026-09-14 14:39:02.688901',2);
+INSERT INTO `computers` VALUES (1,'Apple','MacBook Pro',80000,2022,1,'Apple Silicon M5 Pro','2026-09-10 20:32:07.756139','2026-09-10 20:32:07.776412',1,'DDR5',24),(2,'Acer','Predator Helios',65000,2021,0,'Intel Core I5','2026-09-10 20:32:07.756139','2026-09-10 20:32:07.776412',1,'DDR5',32),(3,'Asus','TUF Gaming',35000,2025,1,'AMD Ryzen 5 5600','2026-09-10 20:32:07.756139','2026-09-10 20:32:07.776412',1,'DDR5',16),(5,'LG','Gram',50000,2022,0,'Intel Core I7','2026-09-10 21:09:51.832709','2026-09-10 21:09:51.832862',1,'DDR5',12),(6,'Asus','Rog Zephyrus',60000,2023,1,'Amd Ryzen 7','2026-09-14 14:38:35.600323','2026-09-14 14:38:35.600404',3,'DDR5',32),(7,'Apple','MacBook Air',40000,2022,0,'Apple Silicon M2','2026-09-14 14:39:02.688880','2026-09-14 14:39:02.688901',2,'DDR5',8),(8,'Apple','MacBook Pro',90000,2026,1,'Apple Silicon M6 Pro','2026-09-19 21:40:25.968512','2026-09-19 21:40:25.968586',2,'DDR5',16);
 /*!40000 ALTER TABLE `computers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -284,7 +285,7 @@ CREATE TABLE `django_migrations` (
   `name` varchar(255) NOT NULL,
   `applied` datetime(6) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -293,7 +294,7 @@ CREATE TABLE `django_migrations` (
 
 LOCK TABLES `django_migrations` WRITE;
 /*!40000 ALTER TABLE `django_migrations` DISABLE KEYS */;
-INSERT INTO `django_migrations` VALUES (1,'contenttypes','0001_initial','2026-09-04 08:58:05.316270'),(2,'contenttypes','0002_remove_content_type_name','2026-09-04 08:58:05.335299'),(3,'auth','0001_initial','2026-09-04 08:58:05.430500'),(4,'auth','0002_alter_permission_name_max_length','2026-09-04 08:58:05.440792'),(5,'auth','0003_alter_user_email_max_length','2026-09-04 08:58:05.445542'),(6,'auth','0004_alter_user_username_opts','2026-09-04 08:58:05.447593'),(7,'auth','0005_alter_user_last_login_null','2026-09-04 08:58:05.458183'),(8,'auth','0006_require_contenttypes_0002','2026-09-04 08:58:05.458775'),(9,'auth','0007_alter_validators_add_error_messages','2026-09-04 08:58:05.460497'),(10,'auth','0008_alter_user_username_max_length','2026-09-04 08:58:05.472384'),(11,'auth','0009_alter_user_last_name_max_length','2026-09-04 08:58:05.484454'),(12,'auth','0010_alter_group_name_max_length','2026-09-04 08:58:05.489079'),(13,'auth','0011_update_proxy_permissions','2026-09-04 08:58:05.491362'),(14,'auth','0012_alter_user_first_name_max_length','2026-09-04 08:58:05.505383'),(15,'computers','0001_initial','2026-09-04 08:58:05.509951'),(16,'computers','0002_computermodel_ram','2026-09-04 10:50:45.356567'),(17,'computers','0003_computermodel_created_at_computermodel_updated_at','2026-09-10 20:32:07.781172'),(18,'computers','0004_computermodel_price','2026-09-10 20:42:14.220545'),(19,'computers','0005_alter_computermodel_avail_status_and_more','2026-09-10 21:04:37.289546'),(20,'computer_shops','0001_initial','2026-09-14 13:02:19.796957'),(21,'computers','0006_computermodel_computer_shop','2026-09-14 13:07:11.862943'),(22,'computers','0007_alter_computermodel_computer_shop','2026-09-14 13:39:08.369712');
+INSERT INTO `django_migrations` VALUES (1,'contenttypes','0001_initial','2026-09-04 08:58:05.316270'),(2,'contenttypes','0002_remove_content_type_name','2026-09-04 08:58:05.335299'),(3,'auth','0001_initial','2026-09-04 08:58:05.430500'),(4,'auth','0002_alter_permission_name_max_length','2026-09-04 08:58:05.440792'),(5,'auth','0003_alter_user_email_max_length','2026-09-04 08:58:05.445542'),(6,'auth','0004_alter_user_username_opts','2026-09-04 08:58:05.447593'),(7,'auth','0005_alter_user_last_login_null','2026-09-04 08:58:05.458183'),(8,'auth','0006_require_contenttypes_0002','2026-09-04 08:58:05.458775'),(9,'auth','0007_alter_validators_add_error_messages','2026-09-04 08:58:05.460497'),(10,'auth','0008_alter_user_username_max_length','2026-09-04 08:58:05.472384'),(11,'auth','0009_alter_user_last_name_max_length','2026-09-04 08:58:05.484454'),(12,'auth','0010_alter_group_name_max_length','2026-09-04 08:58:05.489079'),(13,'auth','0011_update_proxy_permissions','2026-09-04 08:58:05.491362'),(14,'auth','0012_alter_user_first_name_max_length','2026-09-04 08:58:05.505383'),(15,'computers','0001_initial','2026-09-04 08:58:05.509951'),(16,'computers','0002_computermodel_ram','2026-09-04 10:50:45.356567'),(17,'computers','0003_computermodel_created_at_computermodel_updated_at','2026-09-10 20:32:07.781172'),(18,'computers','0004_computermodel_price','2026-09-10 20:42:14.220545'),(19,'computers','0005_alter_computermodel_avail_status_and_more','2026-09-10 21:04:37.289546'),(20,'computer_shops','0001_initial','2026-09-14 13:02:19.796957'),(21,'computers','0006_computermodel_computer_shop','2026-09-14 13:07:11.862943'),(22,'computers','0007_alter_computermodel_computer_shop','2026-09-14 13:39:08.369712'),(23,'computers','0008_remove_computermodel_ram_computermodel_ram_type','2026-09-19 21:25:18.908239'),(24,'computers','0009_alter_computermodel_cpu','2026-09-19 21:25:18.912159'),(25,'computers','0010_computermodel_ram','2026-09-19 21:25:18.919240'),(26,'computers','0011_alter_computermodel_options','2026-09-19 21:28:00.923070'),(27,'computers','0012_alter_computermodel_brand_alter_computermodel_model','2026-09-19 21:48:09.207988');
 /*!40000 ALTER TABLE `django_migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -306,4 +307,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-09-14 20:47:39
+-- Dump completed on 2026-09-19 22:04:12
