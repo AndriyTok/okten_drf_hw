@@ -1,23 +1,32 @@
-from django.core.validators import MaxValueValidator, MinValueValidator
+from django.core.validators import MaxValueValidator, MinValueValidator, RegexValidator
 from django.db import models
 from django.db.models import CASCADE
 
 from apps.computer_shops.models import ComputerShopModel
+from apps.core.enums.regex_enum import RegexEnum
 from apps.core.models import BaseModel
+
+
+class RAMTypeChoices(models.TextChoices):
+    DDR3 = 'DDR3'
+    DDR4 = 'DDR4'
+    DDR5 = 'DDR5'
 
 
 class ComputerModel(BaseModel):
     class Meta:
         db_table = 'computers'
-        #вказуємо назву таблиці
+        ordering = ('id',)
 
-    brand = models.CharField(max_length=20)
-    model = models.CharField(max_length=20)
-    price = models.IntegerField(
-        validators=[
-            MinValueValidator(1000)
-        ]
+    brand = models.CharField(
+        max_length=20,
+        validators=[RegexValidator(RegexEnum.CAPITAL_START.pattern, RegexEnum.CAPITAL_START.msg)]
     )
+    model = models.CharField(
+        max_length=20,
+        validators=[RegexValidator(RegexEnum.CAPITAL_START.pattern, RegexEnum.CAPITAL_START.msg)]
+    )
+    price = models.IntegerField(validators=[MinValueValidator(1000)])
     year = models.IntegerField(
         validators=[
             MinValueValidator(2000),
@@ -25,18 +34,14 @@ class ComputerModel(BaseModel):
         ]
     )
     avail_status = models.BooleanField(default=True)
-    cpu = models.CharField(max_length=15)
-    ram = models.IntegerField(
-        validators=[MinValueValidator(4)]
+    cpu = models.CharField(
+        max_length=20,
+        validators=[RegexValidator(RegexEnum.CPU.pattern, RegexEnum.CPU.msg)])
+    ram = models.IntegerField(validators=[MinValueValidator(4)])
+    ram_type = models.CharField(max_length=4, choices=RAMTypeChoices.choices)
+
+    computer_shop = models.ForeignKey(
+        ComputerShopModel,
+        on_delete=CASCADE,
+        related_name='computers'
     )
-    # звʼязок "багато до одного" -->  ComputerShop --> Computer 1, Computer 2, ...
-    computer_shop = models.ForeignKey(  # привʼязуємо "компʼютер" до відповідного "магазину"
-        ComputerShopModel, # вказуємо модель, з якою встановлюється звʼязок
-        on_delete=CASCADE, # визначаємо, що робити, якщо повʼязаний магазин буде видалений
-        related_name='computers' # Назва зворотного зв'язку від магазину до його комп'ютерів
-                                    # (юзаємо в computer_shops/serializers)
-    )
-    # CASCADE - якщо видаляється батьківський обʼєкт, автоматично видаляються всі повʼязані дочірні елементи
-    # PROTECTED - не дозволяє видалити батьківський обʼєкт, якщо існує хоч один дочірній
-    # SET_NULL - при видаленні батьківського елементу, поле, що було привʼязане у дочірньому елементі, стає нулем
-                                # при видаленні магазину, computer_shop у повʼязаних сутностей computer стане 0

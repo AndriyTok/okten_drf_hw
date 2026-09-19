@@ -1,0 +1,229 @@
+{
+  "info": {
+    "_postman_id": "5d9e81d6-e2d4-43dd-93e9-ecbde4cc1d39",
+    "name": "okten_drf_hw",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "32596261"
+  },
+  "item": [
+    {
+      "name": "computers",
+      "item": [
+        {
+          "name": "get_all_computers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/computers",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "computers"
+              ],
+              "query": [
+                {
+                  "key": "brand_startswith",
+                  "value": "L",
+                  "disabled": true
+                },
+                {
+                  "key": "model_startswith",
+                  "value": "M",
+                  "disabled": true
+                },
+                {
+                  "key": "price_lt",
+                  "value": "50000",
+                  "disabled": true
+                },
+                {
+                  "key": "price_gt",
+                  "value": "65000",
+                  "disabled": true
+                },
+                {
+                  "key": "price_range_min",
+                  "value": "50000",
+                  "disabled": true
+                },
+                {
+                  "key": "price_range_max",
+                  "value": "80000",
+                  "disabled": true
+                },
+                {
+                  "key": "year_range_min",
+                  "value": "2023",
+                  "disabled": true
+                },
+                {
+                  "key": "year_range_max",
+                  "value": "2025",
+                  "disabled": true
+                },
+                {
+                  "key": "ram_in",
+                  "value": "8,12,16",
+                  "disabled": true
+                },
+                {
+                  "key": "order",
+                  "value": "-id",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get_computer_by_id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/computers/6",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "computers",
+                "6"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update_computer_by_id",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "brand",
+                  "value": "Acer",
+                  "type": "text"
+                },
+                {
+                  "key": "model",
+                  "value": "Predator Helios",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{host}}/computers/2",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "computers",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete_computer",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/computers/4",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "computers",
+                "4"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "computer_shops",
+      "item": [
+        {
+          "name": "create_computerShop",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Rozetka\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{host}}/computer_shops",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "computer_shops"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get_all_computerShops",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/computer_shops",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "computer_shops"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create_computer",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"brand\": \"Apple\",\n    \"model\": \"MacBook Pro\",\n    \"price\": 90000,\n    \"year\": 2026,\n    \"avail_status\": true,\n    \"cpu\": \"Apple Silicon M6 Pro\",\n    \"ram\": 16,\n    \"ram_type\": \"DDR5\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{host}}/computer_shops/2/computers",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "computer_shops",
+                "2",
+                "computers"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

@@ -36,12 +36,12 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.staticfiles',
+    'django_filters',
 
     #my apps
     "apps.core",
     "apps.computers",
     "apps.computer_shops"
-
 ]
 
 MIDDLEWARE = [

@@ -50,6 +50,24 @@ files = [
 ]
 
 [[package]]
+name = "django-filter"
+version = "26.1"
+description = "Django-filter is a reusable Django application for allowing users to filter querysets dynamically."
+optional = false
+python-versions = ">=3.10"
+groups = ["main"]
+files = [
+    {file = "django_filter-26.1-py3-none-any.whl", hash = "sha256:7d98ef2899218e6242619b532cb1b95af14e09dfcf74844aecb550ad27b59ff2"},
+    {file = "django_filter-26.1.tar.gz", hash = "sha256:66ea04031b068c77c86e1ac26ced7a3f8f13ce797f5795751707e3deefc58054"},
+]
+
+[package.dependencies]
+Django = ">=5.2"
+
+[package.extras]
+drf = ["djangorestframework"]
+
+[[package]]
 name = "django-stubs"
 version = "6.1.0"
 description = "Mypy stubs for Django"
@@ -264,4 +282,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.14"
-content-hash = "b6e2110ab284ef3cb44e5f2ade6d12461bc9f2e450c0f014258ad0b6115ac428"
+content-hash = "7b22e0d5a00a10c830bf7456211e1954a875b4e5d4a4d1aa63f13b6c4c79d7b1"
