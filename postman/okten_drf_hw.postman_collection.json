@@ -44,22 +44,22 @@
                   "disabled": true
                 },
                 {
-                  "key": "price_range_min",
+                  "key": "price_lte",
                   "value": "50000",
                   "disabled": true
                 },
                 {
-                  "key": "price_range_max",
+                  "key": "price_gte",
                   "value": "80000",
                   "disabled": true
                 },
                 {
-                  "key": "year_range_min",
+                  "key": "year_lte",
                   "value": "2023",
                   "disabled": true
                 },
                 {
-                  "key": "year_range_max",
+                  "key": "year_gte",
                   "value": "2025",
                   "disabled": true
                 },
