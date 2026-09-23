@@ -19,6 +19,7 @@ class ComputerModel(BaseModel):
         ordering = ('id',)
 
     brand = models.CharField(
+        db_index = True,
         max_length=20,
         validators=[RegexValidator(RegexEnum.CAPITAL_START.pattern, RegexEnum.CAPITAL_START.msg)]
     )
@@ -26,8 +27,9 @@ class ComputerModel(BaseModel):
         max_length=20,
         validators=[RegexValidator(RegexEnum.CAPITAL_START.pattern, RegexEnum.CAPITAL_START.msg)]
     )
-    price = models.IntegerField(validators=[MinValueValidator(1000)])
+    price = models.IntegerField(db_index=True, validators=[MinValueValidator(1000)])
     year = models.IntegerField(
+        db_index=True,
         validators=[
             MinValueValidator(2000),
             MaxValueValidator(2027)
@@ -37,7 +39,7 @@ class ComputerModel(BaseModel):
     cpu = models.CharField(
         max_length=20,
         validators=[RegexValidator(RegexEnum.CPU.pattern, RegexEnum.CPU.msg)])
-    ram = models.IntegerField(validators=[MinValueValidator(4)])
+    ram = models.IntegerField(db_index = True, validators=[MinValueValidator(4)])
     ram_type = models.CharField(max_length=4, choices=RAMTypeChoices.choices)
 
     computer_shop = models.ForeignKey(

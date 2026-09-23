@@ -1,5 +1,6 @@
 from typing import Any
 
+from rest_framework.exceptions import ValidationError
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 
@@ -8,6 +9,31 @@ class PagePagination(PageNumberPagination):
     page_size = 3
     max_page_size = 10
     page_size_query_param = 'size' #можливість задавати розмір масиву, що буде повертатись
+
+    def get_page_size(self, request):
+        size_param = request.query_params.get(self.page_size_query_param)
+
+        if size_param is None:
+            return self.page_size
+
+        try:
+            size = int(size_param)
+        except (TypeError, ValueError):
+            raise ValidationError({
+                'size': f"'{size_param}' is not a valid integer."
+            })
+
+        if size < 1:
+            raise ValidationError({
+                'size': 'size must be a positive integer (>= 1).'
+            })
+
+        if self.max_page_size and size > self.max_page_size:
+            raise ValidationError({
+                'size': f'size must not exceed {self.max_page_size}.'
+            })
+
+        return size
 
     # функція для отримання кастомного Response
     def get_paginated_response(self, data:Any) -> Response:
