@@ -15,7 +15,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{host}}/computers",
+              "raw": "{{host}}/computers?size=2142",
               "host": [
                 "{{host}}"
               ],
@@ -24,42 +24,42 @@
               ],
               "query": [
                 {
-                  "key": "brand_startswith",
+                  "key": "brand__startswith",
                   "value": "L",
                   "disabled": true
                 },
                 {
-                  "key": "model_startswith",
+                  "key": "model__startswith",
                   "value": "M",
                   "disabled": true
                 },
                 {
-                  "key": "price_lt",
+                  "key": "price__lt",
                   "value": "50000",
                   "disabled": true
                 },
                 {
-                  "key": "price_gt",
+                  "key": "price__gt",
                   "value": "65000",
                   "disabled": true
                 },
                 {
-                  "key": "price_lte",
+                  "key": "price__lte",
                   "value": "50000",
                   "disabled": true
                 },
                 {
-                  "key": "price_gte",
+                  "key": "price__gte",
                   "value": "80000",
                   "disabled": true
                 },
                 {
-                  "key": "year_lte",
+                  "key": "year__lte",
                   "value": "2023",
                   "disabled": true
                 },
                 {
-                  "key": "year_gte",
+                  "key": "year__gte",
                   "value": "2025",
                   "disabled": true
                 },
@@ -72,6 +72,20 @@
                   "key": "order",
                   "value": "-id",
                   "disabled": true
+                },
+                {
+                  "key": "order",
+                  "value": "-ram",
+                  "disabled": true
+                },
+                {
+                  "key": "page",
+                  "value": "0",
+                  "disabled": true
+                },
+                {
+                  "key": "size",
+                  "value": "2142"
                 }
               ]
             }
