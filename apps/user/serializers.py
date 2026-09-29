@@ -56,3 +56,11 @@ class UserSerializer(serializers.ModelSerializer):
         user = UserModel.objects.create_user(**validated_data)
         ProfileModel.objects.create(**profile, user=user)
         return user
+
+class AdminUserUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserModel
+        fields = (
+            'is_active',
+            'is_staff',
+        )

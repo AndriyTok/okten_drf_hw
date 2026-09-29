@@ -1,9 +1,9 @@
 from django.contrib.auth import get_user_model
 
-from rest_framework.generics import ListCreateAPIView
+from rest_framework.generics import ListCreateAPIView, UpdateAPIView
 from rest_framework.permissions import AllowAny, IsAdminUser
 
-from apps.user.serializers import UserSerializer
+from apps.user.serializers import AdminUserUpdateSerializer, UserSerializer
 
 # щоб уникнути конфліктів з вбудованими моделями, краще скористатися цією функцією, щоб отримати наш UserModel
 UserModel = get_user_model()
@@ -16,7 +16,9 @@ class UserListCreateView(ListCreateAPIView):
     def get_permissions(self):
         if self.request.method == 'POST':
             return [AllowAny()]
-        return [IsAdminUser]
+        return [IsAdminUser()]
 
-
+class UserUpdateView(UpdateAPIView):
+    queryset = UserModel.objects.all()
+    serializer_class = AdminUserUpdateSerializer
 
