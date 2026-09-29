@@ -28,6 +28,7 @@ dependencies = [
     "django-dotenv (>=1.4.2,<2.0.0)",
     "isort (>=9.0.1,<10.0.0)",
     "django-filter (>=26.1,<27.0)",
+    "djangorestframework-simplejwt (>=5.5.1,<6.0.0)",
 ]
 
 # Залежності, необхідні тільки під час розробки проєкту.

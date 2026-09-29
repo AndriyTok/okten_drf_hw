@@ -3,6 +3,7 @@ from django.db import models
 from django.db.models import CASCADE
 
 from apps.computer_shops.models import ComputerShopModel
+from apps.computers.managers import ComputerManager
 from apps.core.enums.regex_enum import RegexEnum
 from apps.core.models import BaseModel
 
@@ -47,3 +48,5 @@ class ComputerModel(BaseModel):
         on_delete=CASCADE,
         related_name='computers'
     )
+    
+    objects = ComputerManager() # підключаємо ComputerManager

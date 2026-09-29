@@ -1,15 +1,13 @@
 from rest_framework.generics import ListAPIView, RetrieveUpdateDestroyAPIView
 
-from apps.computers.filters import ComputerFilter
 from apps.computers.models import ComputerModel
 from apps.computers.serializers import ComputerSerializer
 
 
-# змінюємо на ListApiView, щоб прописати створення вже у computer_shops
 class ComputerListCreateView(ListAPIView):
     serializer_class = ComputerSerializer
     queryset = ComputerModel.objects.all()
-    filterset_class = ComputerFilter
+    # queryset = ComputerModel.objects.less_than_price(40000) # звертаємося до функції з ComputerManager
 
 class ComputerRetrieveUpdateDestroyView(RetrieveUpdateDestroyAPIView):
     serializer_class = ComputerSerializer

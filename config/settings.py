@@ -29,6 +29,8 @@ DEBUG = os.environ.get('DEBUG')
 
 ALLOWED_HOSTS = []
 
+AUTH_USER_MODEL = 'user.UserModel' # перевизначаємо дефолтний UserModel на наш кастомний
+
 
 # Application definition
 
@@ -37,8 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.staticfiles',
     'django_filters',
+    'rest_framework_simplejwt',
 
     #my apps
+    "apps.user",
+    "apps.auth",
     "apps.core",
     "apps.computers",
     "apps.computer_shops"
