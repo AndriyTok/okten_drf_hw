@@ -5,5 +5,5 @@ urlpatterns = [
     path('computers', include('apps.computers.urls')),
     path('computer_shops', include('apps.computer_shops.urls')),
     path('auth', include('apps.auth.urls')),
-    path('users', include('apps.user.urls')),
+    path('user', include('apps.user.urls')),
 ]

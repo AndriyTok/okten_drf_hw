@@ -3,6 +3,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
 from apps.core.models import BaseModel
+from apps.user.managers import UserManager
 
 
 class UserModel(AbstractBaseUser, PermissionsMixin, BaseModel):
@@ -14,6 +15,7 @@ class UserModel(AbstractBaseUser, PermissionsMixin, BaseModel):
     is_staff = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email' # Email викор. як основний ідентифікатор користувача замість username
+    objects = UserManager()
 
 class ProfileModel(BaseModel):
     class Meta:
@@ -27,5 +29,4 @@ class ProfileModel(BaseModel):
             MinValueValidator(13)
         ])
     user = models.OneToOneField(UserModel, on_delete=models.CASCADE, related_name='profile')
-
     objects = models.Manager()
