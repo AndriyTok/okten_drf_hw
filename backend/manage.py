@@ -3,11 +3,9 @@
 import os
 import sys
 
-import dotenv  # імпортуємо бібліотеку django-dotenv (завантаження - poetry add django-dotenv)
-
 
 def main():
-    dotenv.read_dotenv() # додаємо зчитування усіх потрібних полів з env-файлу і додаємо їх до environment
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
     """Run administrative tasks."""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
     try:
