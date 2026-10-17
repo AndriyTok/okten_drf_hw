@@ -2,10 +2,12 @@ from django.core.validators import MaxValueValidator, MinValueValidator, RegexVa
 from django.db import models
 from django.db.models import CASCADE
 
+from core.enums.regex_enum import RegexEnum
+from core.models import BaseModel
+from core.services.file_service import upload_computer_photo
+
 from apps.computer_shops.models import ComputerShopModel
 from apps.computers.managers import ComputerManager
-from apps.core.enums.regex_enum import RegexEnum
-from apps.core.models import BaseModel
 
 
 class RAMTypeChoices(models.TextChoices):
@@ -48,5 +50,6 @@ class ComputerModel(BaseModel):
         on_delete=CASCADE,
         related_name='computers'
     )
-    
+
+    photo = models.ImageField(upload_to=upload_computer_photo, blank=True)
     objects = ComputerManager() # підключаємо ComputerManager

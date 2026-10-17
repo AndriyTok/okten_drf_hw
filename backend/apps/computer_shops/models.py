@@ -1,6 +1,6 @@
 from django.db import models
 
-from apps.core.models import BaseModel
+from core.models import BaseModel
 
 
 class ComputerShopModel(BaseModel):

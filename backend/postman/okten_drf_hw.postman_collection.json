@@ -13,14 +13,7 @@
           "name": "get_all_computers",
           "request": {
             "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{access}}",
-                  "type": "string"
-                }
-              ]
+              "type": "noauth"
             },
             "method": "GET",
             "header": [],
@@ -106,6 +99,9 @@
         {
           "name": "get_computer_by_id",
           "request": {
+            "auth": {
+              "type": "noauth"
+            },
             "method": "GET",
             "header": [],
             "url": {
@@ -167,6 +163,37 @@
               "path": [
                 "computers",
                 "4"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "computer_update_photo",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "photo",
+                  "type": "file",
+                  "src": [
+                    "/Users/andriytok/Downloads/Macbook_pro_image.png"
+                  ]
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{host}}/computers/1/photos",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "computers",
+                "1",
+                "photos"
               ]
             }
           },
@@ -257,7 +284,78 @@
           "name": "user",
           "item": [
             {
+              "name": "password_recovery",
+              "item": [
+                {
+                  "name": "recovery_request",
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n    \"email\": \"atokoveshka@gmail.com\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{host}}/auth/recovery",
+                      "host": [
+                        "{{host}}"
+                      ],
+                      "path": [
+                        "auth",
+                        "recovery"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "reset_password",
+                  "request": {
+                    "method": "PATCH",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n    \"password\": \"new_password123\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{host}}/auth/recovery/<тут токен з мейлу>",
+                      "host": [
+                        "{{host}}"
+                      ],
+                      "path": [
+                        "auth",
+                        "recovery",
+                        "<тут токен з мейлу>"
+                      ]
+                    }
+                  },
+                  "response": []
+                }
+              ]
+            },
+            {
               "name": "create_user",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      ""
+                    ]
+                  }
+                }
+              ],
               "request": {
                 "auth": {
                   "type": "noauth"
@@ -266,7 +364,7 @@
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n    \"email\": \"andriy.hart@gmail.com\",\n    \"password\": \"password123\",\n    \"profile\": {\n        \"name\": \"Andriy\",\n        \"surname\": \"Hart\",\n        \"age\": 21\n    }\n}",
+                  "raw": "{\n    \"email\": \"atokoveshka@gmail.com\",\n    \"password\": \"test_pass123\",\n    \"profile\": {\n        \"name\": \"Test\",\n        \"surname\": \"User\",\n        \"age\": 30\n    }\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -345,6 +443,25 @@
                   ],
                   "path": [
                     "user"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "activate_user(manual)",
+              "request": {
+                "method": "PATCH",
+                "header": [],
+                "url": {
+                  "raw": "{{host}}/auth/activate/<тут токен з мейлу>",
+                  "host": [
+                    "{{host}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "activate",
+                    "<тут токен з мейлу>"
                   ]
                 }
               },

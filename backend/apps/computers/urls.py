@@ -7,5 +7,6 @@ urlpatterns = [
     #ендпоінт для отримання всіх компʼютерів та створення нового компʼютера, імпортуємо потрібну вʼюшку
     path('', ComputerListCreateView.as_view(), name='computer_get_create'),
     # ендпоінт для отримання компʼютера по id, оновлення, та видалення
-    path('/<int:pk>', ComputerRetrieveUpdateDestroyView.as_view(), name='computer_update_destroy')
+    path('/<int:pk>', ComputerRetrieveUpdateDestroyView.as_view(), name='computer_update_destroy'),
+    path('/<int:pk>/photos', ComputerAddPhotoView.as_view(), name='computer_update_photo'),
 ]

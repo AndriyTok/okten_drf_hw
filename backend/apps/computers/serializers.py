@@ -18,4 +18,10 @@ class ComputerSerializer(serializers.ModelSerializer):
             'ram_type'
         )
 
+class ComputerPhotoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ComputerModel
+        fields = (
+            'photo',
+        )
 

@@ -1,8 +1,8 @@
-from rest_framework.generics import ListAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.generics import ListAPIView, RetrieveUpdateDestroyAPIView, UpdateAPIView
 from rest_framework.permissions import AllowAny
 
 from apps.computers.models import ComputerModel
-from apps.computers.serializers import ComputerSerializer
+from apps.computers.serializers import ComputerPhotoSerializer, ComputerSerializer
 
 
 class ComputerListCreateView(ListAPIView):
@@ -15,3 +15,14 @@ class ComputerRetrieveUpdateDestroyView(RetrieveUpdateDestroyAPIView):
     serializer_class = ComputerSerializer
     queryset = ComputerModel.objects.all()
     http_method_names = ['get', 'put', 'patch', 'delete']
+
+class ComputerAddPhotoView(UpdateAPIView):
+    serializer_class = ComputerPhotoSerializer
+    queryset = ComputerModel.objects.all()
+    http_method_names = ['put']
+    permission_classes = (AllowAny,)
+
+    def perform_update(self, serializer):
+        computer = self.get_object()
+        computer.photo.delete()
+        super().perform_update(serializer)

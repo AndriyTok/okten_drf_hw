@@ -11,6 +11,7 @@ UserModel = get_user_model()
 class UserListCreateView(ListCreateAPIView):
     queryset = UserModel.objects.all()
     serializer_class = UserSerializer
+    permission_classes = (AllowAny,)
 
     #даємо дозвіл ендпоінту /user на створення юзера та профіля ще без аутентифікації
     def get_permissions(self):
@@ -21,4 +22,3 @@ class UserListCreateView(ListCreateAPIView):
 class UserUpdateView(UpdateAPIView):
     queryset = UserModel.objects.all()
     serializer_class = AdminUserUpdateSerializer
-

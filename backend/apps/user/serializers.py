@@ -1,10 +1,15 @@
 from django.contrib.auth import get_user_model
+# декоратор, що забезпечує атомарність транзакції
+# або все виконується успішно, або зміни скасовуються при помилках
+from django.db.transaction import atomic
 
 from rest_framework import serializers
 
+from core.services.email_service import EmailService
+from core.services.jwt_service import ActivateToken, JWTService
+
 from apps.user.models import ProfileModel
 
-# щоб уникнути конфліктів з вбудованими моделями, краще скористатися цією функцією, щоб отримати наш UserModel
 UserModel = get_user_model()
 
 class ProfileSerializer(serializers.ModelSerializer):
@@ -36,7 +41,7 @@ class UserSerializer(serializers.ModelSerializer):
             'created_at',
             'updated_at'
         )
-        read_only_fields = ( #поля, які можна лише читати
+        read_only_fields = (
             'id',
             'is_active',
             'is_staff',
@@ -47,14 +52,15 @@ class UserSerializer(serializers.ModelSerializer):
         )
         extra_kwargs = {
             'password': {
-                'write_only': True, # пароль бажано не повертати в response, тому це поле можна лиш записати
+                'write_only': True,
             }
         }
-
+    @atomic
     def create(self, validated_data:dict):
         profile = validated_data.pop('profile')
         user = UserModel.objects.create_user(**validated_data)
         ProfileModel.objects.create(**profile, user=user)
+        EmailService.register(user)
         return user
 
 class AdminUserUpdateSerializer(serializers.ModelSerializer):
