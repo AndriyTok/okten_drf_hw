@@ -2,7 +2,7 @@
 FROM python:3.14-alpine
 
 # автор dockerfile
-MAINTAINER andrii_dev
+LABEL org.opencontainers.image.authors=andrii_dev
 
 # змінні середовища
 ENV PYTHONDONTWRITEBYTECODE=1 \
@@ -29,7 +29,7 @@ WORKDIR /app
 # вказуємо директорію, у яку буде встановлено poetry
 ENV POETRY_HOME=/usr/local/poetry
 # завантажуємо та запускаємо офіційний інсталятор poetry
-RUN curl -sSl https://install.python-poetry.org | python3
+RUN curl -sSL https://install.python-poetry.org | python3
 # додаємо poetry до змінних середовища, щоб викликати його з будь-якої директорії
 ENV PATH=$POETRY_HOME/bin:$PATH
 

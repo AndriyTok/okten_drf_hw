@@ -1,0 +1,7 @@
+.git
+frontend
+node_modules
+*.log
+
+mysql/
+__pycache__
