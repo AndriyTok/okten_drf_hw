@@ -43,7 +43,7 @@ class EmailService:
     @classmethod
     def recovery(cls, user):
         token = JWTService.create_token(user, RecoveryToken)
-        url = f'https://localhost/recovery/{token}'
+        url = f'http://localhost/recovery/{token}'
         cls.__send_email(
             to=user.email,
             template_name='recovery.html',
