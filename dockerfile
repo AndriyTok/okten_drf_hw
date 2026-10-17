@@ -2,7 +2,7 @@
 FROM python:3.14-alpine
 
 # автор dockerfile
-LABEL org.opencontainers.image.authors=andrii_dev
+LABEL org.opencontainers.image.authors="andrii_dev"
 
 # змінні середовища
 ENV PYTHONDONTWRITEBYTECODE=1 \
