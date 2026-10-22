@@ -11,6 +11,7 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAdminUser', # доступ лише для адміністраторів
-    ]
+        'rest_framework.permissions.IsAdminUser',  # доступ лише для адміністраторів
+    ],
+    'EXCEPTION_HANDLER': 'core.handlers.error_handler.error_handler',
 }
