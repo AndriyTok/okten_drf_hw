@@ -7,13 +7,10 @@ UserModel = get_user_model()
 
 
 class EmailService:
-    #send_email перенесено в ./tasks/email.py
-
     @classmethod
     def register(cls, user):
         token = JWTService.create_token(user, ActivateToken)
         url = f'http://localhost/activate/{token}'
-        # Передаємо надсилання листа в Celery для фонового виконання.
         # Метод delay() ставить завдання в чергу, не очікуючи його завершення.
         send_email.delay(
             to=user.email,

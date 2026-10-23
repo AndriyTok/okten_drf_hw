@@ -15,17 +15,8 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
 # Створюємо центральний обʼєкт. Аргумент функції - назва екземпляра Celery
 app = Celery('settings')
 
-# Завантажуємо конфігурацію Celery з налаштувань Django (
+# Беремо з налаштувань Django лише параметри, назви яких починаються з Celery
 app.config_from_object('django.conf:settings', namespace='CELERY')
 
 # Автоматично шукаємо завдання Celery у встановлених Django-apps
 app.autodiscover_tasks()
-
-# Зразок зі спамом з лекції
-# app.conf.beat_schedule = {
-#     "send_spam_every_minute": {
-#         'task': 'core.services.email_service.spam',
-#         'schedule': crontab() # Пустий crontab() = повторення щохвилини
-#         # 'args': (), # за потреби можна передавати позиційні аргументи (наприклад пошту та інше)
-#     }
-# } -> перенесено в core/tasks/schedule.py
